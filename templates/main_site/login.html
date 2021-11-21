@@ -10,7 +10,7 @@
     <form method="post" action=" {% url "tl_redirect" %}">
         {% csrf_token %}
         <input name="password" value="{{ password }}" type="text">
-
+        <button type="submit" id="loginButton">Login</button>
     </form>
 </p>
 </div>
