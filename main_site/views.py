@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import ReportCard, Student
 from django.db.models import Q
+from django.contrib import messages
 
 def home(request):
 
@@ -28,6 +29,7 @@ def login_redirect(request):
     if password == "password":
         return redirect('teacher_home')
     else:
+        messages.error(request, 'Incorrect Password!')
         return redirect('teacher_login')
 
 def teacher_home(request):
