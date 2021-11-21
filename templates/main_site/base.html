@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSDS 344</title>
+
+</head>
+<body>
+<div class="content-section" id="filter">
+    <div align="right"><a href={% url "teacher_login" %}>Teacher Login</a></div>
+    <h3>CSDS 344: Student View</h3>
+
+    <p id="filtertext2"> Search for students in the class
+        <form method="get">
+            <input name="q" id="id_q" value="{{ request.GET.q }}" placeholder="Enter Name Or ID">
+        </form>
+    </p>
+</div>
+{% if students %}
+{% for student in students %}
+<h2>{{student.name}}: {{ student.case_id }}</h2>
+{% endfor %}
+{% endif %}
+</body>
+</html>

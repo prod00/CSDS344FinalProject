@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSDS 344</title>
+
+</head>
+<body>
+<div class="content-section" id="filter">
+    <div align="right"><a href={% url "home" %}>Logout</a></div>
+    <h3>CSDS 344: Teacher View</h3>
+
+    <p id="filtertext2"> Search for students in the class
+        <form method="get">
+            <input name="q" id="id_q" value="{{ request.GET.q }}" placeholder="Enter Name Or ID">
+        </form>
+    </p>
+</div>
+{% if reportcards %}
+{% for reportcard in reportcards %}
+<h2>{{reportcard.student.name}} | {{ reportcard.student.case_id }} | Midterm Grade={{ reportcard.midterm_grade }} | Final Grade={{ reportcard.final_grade }}</h2>
+{% endfor %}
+{% endif %}
+</body>
+</html>
