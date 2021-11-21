@@ -18,10 +18,30 @@
         </form>
     </p>
 </div>
+<!--
 {% if reportcards %}
 {% for reportcard in reportcards %}
 <h2>{{reportcard.student.name}} | {{ reportcard.student.case_id }} | Midterm Grade={{ reportcard.midterm_grade }} | Final Grade={{ reportcard.final_grade }}</h2>
 {% endfor %}
 {% endif %}
+-->
+
+<table id="searchDisplay">
+    <tr>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Midterm Grade</th>
+        <th>Final Grade</th>
+    </tr>
+    {% for reportcard in reportcards %}
+    <tr>
+        <td>{{ reportcard.student.name }}</td>
+        <td>{{ reportcard.student.case_id }}</td>
+        <td>{{ reportcard.midterm_grade }}</td>
+        <td>{{ reportcard.final_grade }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>
