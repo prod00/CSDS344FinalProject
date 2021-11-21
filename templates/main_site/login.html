@@ -7,8 +7,17 @@
     <title>CSDS 344</title>
 </head>
 <body>
+<div align="right">
+    <a href={% url "home" %}>Back</a>
+</div>
+
 <div id="loginForm">
     <p id="filtertext2"> Enter the super complex password to login
+    <form method="post" action="{% url "tl_redirect" %}">
+        {% csrf_token %}
+        <input name="password" value="{{ password }}" type="text">
+        <button type="submit" id="loginButton">Login</button>
+    </form>
     {% if messages %}
     <p class="messages">
         {% for message in messages %}
@@ -16,11 +25,6 @@
         {% endfor %}
     </p>
 {% endif %}
-    <form method="post" action=" {% url "tl_redirect" %}">
-        {% csrf_token %}
-        <input name="password" value="{{ password }}" type="text">
-        <button type="submit" id="loginButton">Login</button>
-    </form>
 </p>
 </div>
 </body>
