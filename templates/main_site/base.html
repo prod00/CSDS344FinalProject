@@ -12,16 +12,25 @@
     <div align="right"><a href={% url "teacher_login" %}>Teacher Login</a></div>
     <h3>CSDS 344: Student View</h3>
 
-    <p id="filtertext2"> Search for students in the class
+    <p id="searchText"> Search for students
         <form method="get">
             <input name="q" id="id_q" value="{{ request.GET.q }}" placeholder="Enter Name Or ID">
+            <button type="submit" id="searchButton">Search</button>
         </form>
     </p>
 </div>
-{% if students %}
-{% for student in students %}
-<h2>{{student.name}}: {{ student.case_id }}</h2>
-{% endfor %}
-{% endif %}
+
+<table id="searchDisplay">
+    <tr>
+        <th>Name</th>
+        <th>Id</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.case_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
