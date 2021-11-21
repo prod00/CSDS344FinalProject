@@ -1,3 +1,11 @@
-#filtertext2 {
-  color: red;
+#loginForm {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
