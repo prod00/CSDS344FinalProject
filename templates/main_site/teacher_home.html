@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="content-section" id="filter">
-    <div align="right"><a href={% url "home" %}>Logout</a></div>
+    <div align="right"><a href={% url "home" %}><button>Logout</button></a></div>
     <h3>CSDS 344: Teacher View</h3>
 
     <p id="filtertext2"> Search for students in the class
@@ -18,13 +18,6 @@
         </form>
     </p>
 </div>
-<!--
-{% if reportcards %}
-{% for reportcard in reportcards %}
-<h2>{{reportcard.student.name}} | {{ reportcard.student.case_id }} | Midterm Grade={{ reportcard.midterm_grade }} | Final Grade={{ reportcard.final_grade }}</h2>
-{% endfor %}
-{% endif %}
--->
 
 <table id="searchDisplay">
     <tr>
