@@ -13,10 +13,13 @@ def home(request):
             'students': students
         }
     else:
-        all_students = Student.objects.all()
+        #all_students = Student.objects.all()
 
+        #context = {
+        # 'students': all_students,
+        #}
         context = {
-         'students': all_students,
+         'students': None,
         }
 
     return render(request, 'main_site/base.html', context)
