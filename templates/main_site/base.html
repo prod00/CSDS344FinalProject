@@ -1,25 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"  href="{%  static  'css/style.css'  %}">
     <meta charset="UTF-8">
     <title>CSDS 344</title>
 
 </head>
 <body>
 <div class="content-section" id="filter">
-    <div align="right"><a href={% url "teacher_login" %}>Teacher Login</a></div>
+    <div align="right"><a href={% url "teacher_login" %}><button>Teacher Login</button></a></div>
     <h3>CSDS 344: Student View</h3>
 
-    <p id="filtertext2"> Search for students in the class
+    <p id="searchText"> Search for students
         <form method="get">
             <input name="q" id="id_q" value="{{ request.GET.q }}" placeholder="Enter Name Or ID">
+            <button type="submit" id="searchButton">Search</button>
         </form>
     </p>
 </div>
-{% if students %}
-{% for student in students %}
-<h2>{{student.name}}: {{ student.case_id }}</h2>
-{% endfor %}
-{% endif %}
+
+<table id="searchDisplay">
+    {% for student in students %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.case_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>

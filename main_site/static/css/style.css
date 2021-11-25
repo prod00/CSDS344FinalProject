@@ -1,0 +1,37 @@
+#loginForm {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#searchDisplay {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#searchDisplay td, #searchDisplay th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#searchDisplay th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+td {
+  text-align: center;
+}
+
+.content-section {
+  text-align: center;
+}

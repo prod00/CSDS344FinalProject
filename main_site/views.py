@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import ReportCard, Student
 from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
-#@csrf_exempt
 def home(request):
+
     query = request.GET.get('q')
     if query:
         students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
@@ -13,30 +13,23 @@ def home(request):
             'students': students
         }
     else:
-        all_students = Student.objects.all()
-
         context = {
-         'students': all_students,
+         'students': None,
         }
 
     return render(request, 'main_site/base.html', context)
 
-#@csrf_exempt
 def teacher_login(request):
     return render(request, 'main_site/login.html')
 
-#@csrf_exempt
 def login_redirect(request):
-    print("---------------------")
-    print(request.POST)
-    print("---------------------")
     password = request.POST.get('password')
     if password == "password":
         return redirect('teacher_home')
     else:
+        messages.error(request, 'Incorrect Password!')
         return redirect('teacher_login')
 
-#@csrf_exempt
 def teacher_home(request):
     query = request.GET.get('q')
     if query:

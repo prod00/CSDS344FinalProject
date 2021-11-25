@@ -1,17 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"  href="{%  static  'css/style.css'  %}">
     <meta charset="UTF-8">
     <title>CSDS 344</title>
 </head>
 <body>
-<div align="center">
+<div align="right">
+    <a href={% url "home" %}><button>Back</button></a>
+</div>
+
+<div id="loginForm">
     <p id="filtertext2"> Enter the super complex password to login
-    <form method="post" action=" {% url "tl_redirect" %}">
+    <form method="post" action="{% url "tl_redirect" %}">
         {% csrf_token %}
         <input name="password" value="{{ password }}" type="text">
-
+        <button type="submit" id="loginButton">Login</button>
     </form>
+    {% if messages %}
+    <p class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </p>
+{% endif %}
 </p>
 </div>
 </body>

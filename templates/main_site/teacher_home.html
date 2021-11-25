@@ -1,25 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"  href="{%  static  'css/style.css'  %}">
     <meta charset="UTF-8">
     <title>CSDS 344</title>
 
 </head>
 <body>
 <div class="content-section" id="filter">
-    <div align="right"><a href={% url "home" %}>Logout</a></div>
+    <div align="right"><a href={% url "home" %}><button>Logout</button></a></div>
     <h3>CSDS 344: Teacher View</h3>
 
     <p id="filtertext2"> Search for students in the class
         <form method="get">
             <input name="q" id="id_q" value="{{ request.GET.q }}" placeholder="Enter Name Or ID">
+            <button type="submit" id="searchButton">Search</button>
         </form>
     </p>
 </div>
-{% if reportcards %}
-{% for reportcard in reportcards %}
-<h2>{{reportcard.student.name}} | {{ reportcard.student.case_id }} | Midterm Grade={{ reportcard.midterm_grade }} | Final Grade={{ reportcard.final_grade }}</h2>
-{% endfor %}
-{% endif %}
+
+<table id="searchDisplay">
+    <tr>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Midterm Grade</th>
+        <th>Final Grade</th>
+    </tr>
+    {% for reportcard in reportcards %}
+    <tr>
+        <td>{{ reportcard.student.name }}</td>
+        <td>{{ reportcard.student.case_id }}</td>
+        <td>{{ reportcard.midterm_grade }}</td>
+        <td>{{ reportcard.final_grade }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>
