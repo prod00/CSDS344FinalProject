@@ -23,8 +23,9 @@
 <table id="searchDisplay">
     {% for student in students %}
     <tr>
-        <td>{{ student.name }}</td>
-        <td>{{ student.case_id }}</td>
+        {% for i in student|slice:"1:" %}
+        <td>{{i}}</td>
+        {% endfor %}
     </tr>
     {% endfor %}
 </table>
