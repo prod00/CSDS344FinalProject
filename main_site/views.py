@@ -2,15 +2,22 @@ from django.shortcuts import render, redirect
 from .models import ReportCard, Student
 from django.db.models import Q
 from django.contrib import messages
+from django.db import connection
 
 def home(request):
 
     query = request.GET.get('q')
     if query:
         # students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
-        query = "SELECT * FROM Student WHERE name LIKE '%" + query + "%';"
-        # injection_query = "SELECT * FROM Student WHERE name LIKE '%" + "%' OR 1=1; --"
-        students = Student.objects.raw(query)
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM Student WHERE name LIKE '%" + query + "%';"
+            cursor.execute(query)
+            row = cursor.fetchall()
+            students = row
+            # injection query: ';--
+            # ' UNION SELECT tbl_name,type,name,rootpage FROM sqlite_schema WHERE type ='table';--
+            # ' UNION SELECT * FROM ReportCard;--
+            print(students)
 
         context = {
             'students': students

@@ -14,5 +14,8 @@ class ReportCard(models.Model):
     midterm_grade = models.IntegerField()
     final_grade = models.IntegerField()
 
+    class Meta:
+        db_table = 'ReportCard'
+
 
 
