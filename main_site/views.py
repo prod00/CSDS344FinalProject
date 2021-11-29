@@ -7,7 +7,10 @@ def home(request):
 
     query = request.GET.get('q')
     if query:
-        students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
+        # students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
+        query = "SELECT * FROM Student WHERE name LIKE '%" + query + "%';"
+        # injection_query = "SELECT * FROM Student WHERE name LIKE '%" + "%' OR 1=1; --"
+        students = Student.objects.raw(query)
 
         context = {
             'students': students
