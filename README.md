@@ -11,3 +11,4 @@ How to start up Flask website:
 1. Make sure you are in the directory "flask-project-CSDS344"
 2. Run the command "python app.py" in the terminal
 3. Click the link in the terminal
+(For the time being all of our flask code is in the flask branch)
