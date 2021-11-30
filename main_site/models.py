@@ -11,5 +11,10 @@ class ReportCard(models.Model):
     midterm_grade = models.IntegerField()
     final_grade = models.IntegerField()
 
+class Password(models.Model):
+    password = models.CharField(default="password", max_length=20)
+
+
+
 
 
