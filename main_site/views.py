@@ -6,18 +6,14 @@ from django.contrib import messages
 def home(request):
 
     query = request.GET.get('q')
+    context={}
     if query:
         students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
 
         context = {
             'students': students
         }
-    else:
-        all_students = Student.objects.all()
 
-        context = {
-         'students': all_students,
-        }
 
     return render(request, 'main_site/base.html', context)
 
@@ -26,10 +22,13 @@ def teacher_login(request):
 
 def login_redirect(request):
     possible_passwords = list(Password.objects.all())
-    for password in possible_passwords:
-        print(password.password)
     user_in = request.POST.get('password')
-    if user_in == "password":
+    teacher = False
+    for password in possible_passwords:
+        if password.password in user_in:
+            teacher = True
+
+    if teacher:
         return redirect('teacher_home')
     else:
         messages.error(request, 'Incorrect Password!')
