@@ -7,7 +7,7 @@ app = Flask(__name__)
 def login_page():
     if request.method == "POST":
         password = request.form.get("pword")
-        if password == "apple" or password == "hacks":
+        if password == "apple" or password == "hacks" or password == "taco!":
             return redirect(url_for('top_secret_page'))
         else:
             return render_template('404.html'), 404
