@@ -1,23 +1,19 @@
 from django.shortcuts import render, redirect
-from .models import ReportCard, Student
+from .models import ReportCard, Student, Password
 from django.db.models import Q
 from django.contrib import messages
 
 def home(request):
 
     query = request.GET.get('q')
+    context={}
     if query:
         students = Student.objects.filter(Q(name__icontains=query)| Q(case_id__icontains=query))
 
         context = {
             'students': students
         }
-    else:
-        all_students = Student.objects.all()
 
-        context = {
-         'students': all_students,
-        }
 
     return render(request, 'main_site/base.html', context)
 
@@ -25,8 +21,14 @@ def teacher_login(request):
     return render(request, 'main_site/login.html')
 
 def login_redirect(request):
-    password = request.POST.get('password')
-    if password == "password":
+    possible_passwords = list(Password.objects.all())
+    user_in = request.POST.get('password')
+    teacher = False
+    for password in possible_passwords:
+        if password.password in user_in:
+            teacher = True
+
+    if teacher:
         return redirect('teacher_home')
     else:
         messages.error(request, 'Incorrect Password!')
